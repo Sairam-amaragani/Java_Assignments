@@ -1,3 +1,59 @@
+//Method 1 with using LocalDate
+
+import java.time.LocalDate;
+
+import java.util.ArrayList;
+
+
+import java.util.Scanner;
+
+public class Assignment4 {
+    public static void main(String []args){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter signup date:");
+        String[] signup=sc.nextLine().split("-");
+        System.out.println("Enter current date");
+        String[] current=sc.nextLine().split("-");
+        ArrayList<Integer> signupDate=new ArrayList<Integer>();
+        ArrayList<Integer> currentDate=new ArrayList<Integer>();
+        for(String x:signup){
+            signupDate.add(Integer.parseInt(x));
+        }
+        for(String x:current){
+            currentDate.add(Integer.parseInt(x));
+        }
+        LocalDate d=LocalDate.of(currentDate.get(2), signupDate.get(1),signupDate.get(0));
+        LocalDate start=d.minusDays(30);
+        LocalDate end=d.plusDays(30);
+        LocalDate curr=LocalDate.of(currentDate.get(2),currentDate.get(1),currentDate.get(0));
+        findRange(start,end,curr);
+    }
+
+    private static void findRange(LocalDate start,LocalDate end,LocalDate curr) {
+        int s,t;
+        s= start.compareTo(curr);
+        t=end.compareTo(curr);
+        if(s<0 && t>0){
+            System.out.println(start+" "+curr);
+        }
+
+        else if(s<0 && t<0){
+            System.out.println(start+" "+end);
+
+
+        }
+        else{
+            System.out.println("NO RANGE");
+
+
+        }
+
+    }
+
+}
+
+/* Method 2 without using LocalDate
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -135,3 +191,5 @@ public class Assignment4 {
 
     }
 }
+*/
+
